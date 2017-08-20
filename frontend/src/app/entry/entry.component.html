@@ -1,6 +1,6 @@
 <md-card class="card">
   <md-select placeholder="Select your organization">
-    <md-option *ngFor="let organization of organizations" value="test">{{organization}}</md-option>
+    <md-option *ngFor="let organization of organizations" value="{{organization.code}}">{{organization.displayName}}</md-option>
   </md-select>
       <button md-button color="primary">Enter</button>  
 </md-card>

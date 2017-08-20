@@ -30,6 +30,27 @@ namespace backend
 
             services.AddScoped<IBannerStrikesBackRepository, BannerStrikesBackRepository>();
 
+            //services.AddCors(options => options.AddPolicy("Cors",
+            //    builder =>
+            //    {
+            //        builder
+            //            .AllowAnyOrigin()
+            //            .AllowAnyMethod()
+            //            .AllowAnyHeader();
+            //    }));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
             services.AddMvc();
         }
 
@@ -41,7 +62,10 @@ namespace backend
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("AllowAllOrigins");
+
             app.UseMvc();
+
         }
     }
 }

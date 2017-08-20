@@ -9,7 +9,7 @@ import { Organization } from '../models/organization';
 export class OrganizationService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private organizationsUrl = 'api/organizations';
+  private organizationsUrl = 'http://localhost:7624/api/organizations';
 
   constructor(private http: Http) { }
 
@@ -24,9 +24,10 @@ export class OrganizationService {
 
   // Get all organizations
   getOrganizations(): Promise<Organization[]> {
+    console.log(this.organizationsUrl);
     return this.http.get(this.organizationsUrl)
       .toPromise()
-      .then(response => response.json().data as Organization)
+      .then(response => response.json() as Organization)
       .catch(this.handleError);
   }
 

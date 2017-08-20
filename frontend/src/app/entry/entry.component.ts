@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class EntryComponent implements OnInit {
 
   organizations: Organization[];
-
+  
   constructor(private organizationService: OrganizationService) { }
 
   ngOnInit() {
