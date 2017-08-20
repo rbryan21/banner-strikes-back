@@ -25,20 +25,13 @@ namespace backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ApiContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IBannerStrikesBackRepository, BannerStrikesBackRepository>();
-
-            //services.AddCors(options => options.AddPolicy("Cors",
-            //    builder =>
-            //    {
-            //        builder
-            //            .AllowAnyOrigin()
-            //            .AllowAnyMethod()
-            //            .AllowAnyHeader();
-            //    }));
-
+            
+            // Temporary: Allowing all origins is not a good idea for production
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins",
